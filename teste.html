@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventário de Riscos Psicossociais</title>
+  
+  <style>
+    * {box-sizing: border-box;}
+ 
+ body {
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   background-color: #f4f6f8;
+   margin: 0;
+   padding: 0;
+ }
+
+ .container {
+   max-width: 900px;
+   width: 90%;
+   margin: 30px auto;
+   background-color: #ffffff;
+   padding: 30px;
+   border-radius: 12px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+ h1 {
+   text-align: center;
+   color: #2c3e50;
+   font-size: 24px;
+ }
+
+ .instructions, .escala {
+   margin-bottom: 25px;
+   color: #555;
+   font-size: 15px;
+ }
+ .pergunta input[type="text"]
+ .pergunta input[type="number"],
+ .pergunta input[type="text"],
+ .pergunta input[type="email"],
+ .pergunta input[type="tel"] {
+   width: 100%;
+   max-width: 100%;
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+   font-size: 14px;
+ }
+
+ 
+ .grupo {
+   margin-top: 30px;
+   padding: 20px;
+   background-color: #f9fbfd;
+   border-radius: 8px;
+   padding: 30px;
+   border-radius: 12px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+ }
+
+ .grupo1 {
+   margin-top: 30px;
+   padding: 20px;
+   background-color: #f9fbfd;
+   border-radius: 8px;
+   padding: 30px;
+   border-radius: 12px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+ }
+
+ .grupo2 {
+   margin-top: 30px;
+   padding: 20px;
+   background-color: #f9fbfd;
+   border-radius: 8px;
+   padding: 30px;
+   border-radius: 12px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+ }
+
+ .grupo3 {
+   margin-top: 30px;
+   padding: 20px;
+   background-color: #f9fbfd;
+   border-radius: 8px;
+   padding: 30px;
+   border-radius: 12px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+ }
+/*
+ .grupo strong {
+   margin-bottom: 20px;
+   margin-top: 30px;
+   background-color: #f9fbfd;
+   border-radius: 12px;
+   text-align: left;
+ }
+*/
+ .pergunta {
+   margin-bottom: 30px;
+ }
+ 
+ .escala-opcoes {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   max-width: 600px;
+   margin: 0 auto 10px;
+ }
+
+ .escala-opcoes label {
+   text-align: center;
+   flex: 1;
+ }
+
+ .escala-opcoes input[type="radio"] {
+   margin-top: 5px;
+ }
+
+ .comentario {
+   margin-top: 30px;
+ }
+
+ .comentario textarea {
+   width: 100%;
+   padding: 12px;
+   border-radius: 8px;
+   border: 1px solid #ccc;
+   resize: vertical;
+   font-size: 14px;
+   font-family: inherit;
+   margin-bottom: 15px;
+ }
+
+ button[type="submit"] {
+   display: block;
+   width: 100%;
+   padding: 14px;
+   background-color: #3498db;
+   color: white;
+   font-size: 16px;
+   font-weight: bold;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+ }
+
+    button[type="submit"]:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div style="text-align: right; padding: 20px;">
+    <button onclick="window.location.href='login.html'" style="padding: 10px 20px; font-size: 14px; background-color: #2ecc71; color: white; border: none; border-radius: 6px; cursor: pointer;">Login ADM</button>
+  </div>
+  
+  <div class="container">
+    <h1>Inventário de Riscos Psicossociais no Trabalho</h1>
+    <p class="instructions"><strong>Instruções:</strong> Marque a opção que melhor representa sua realidade no ambiente de trabalho.</p>
+    <p class="escala">Escala: 1 = Nunca 2 = Raramente 3 = Às vezes 4 = Frequentemente 5 = Sempre</p>
+<!-- Identificação -->
+<form id="formulario">
+<div class="grupo">
+    <strong>Identificação</strong>
+    <div class="pergunta">
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" id="nome" required>
+    </div>
+    <div class="pergunta">
+      <label for="telefone">Telefone:</label>
+      <input type="tel" name="telefone" id="telefone" required>
+    </div>
+    <div class="pergunta">
+      <label for="setor">Setor</label>
+      <input type="text" name="setor" id="setor" required>
+    </div>
+    <div class="pergunta">
+      <label for="email">E-mail:</label>
+      <input type="email" name="email" id="email" required>
+    </div>
+</div>
+    
+      <!-- Grupos de Perguntas -->
+      <div class="grupo1">
+        <strong>1. Demandas de Trabalho</strong>
+        
+          <p>Sinto que tenho mais tarefas do que consigo dar conta.</p>
+          <div class="escala-opcoes">
+            <label>Nunca<br><input type="radio" name="demanda1" value="1" required></label>
+            <label><br><input type="radio" name="demanda1" value="2"></label>
+            <label><br><input type="radio" name="demanda1" value="3"></label>
+            <label><br><input type="radio" name="demanda1" value="4"></label>
+            <label>Sempre<br><input type="radio" name="demanda1" value="5"></label>
+          </div>
+          <p>Preciso realizar atividades com prazos muito curtos.</p>
+          <div class="escala-opcoes">
+            <label>Nunca<br><input type="radio" name="demanda2" value="1" required></label>
+            <label><br><input type="radio" name="demanda2" value="2"></label>
+            <label><br><input type="radio" name="demanda2" value="3"></label>
+            <label><br><input type="radio" name="demanda2" value="4"></label>
+            <label>Sempre<br><input type="radio" name="demanda2" value="5"></label>
+          </div>
+       
+            <p>Trabalho sob pressão frequentemente.</p>
+            <div class="escala-opcoes">
+              <label>Nunca<br><input type="radio" name="demanda3" value="1" required></label>
+              <label><br><input type="radio" name="demanda3" value="2"></label>
+              <label><br><input type="radio" name="demanda3" value="3"></label>
+              <label><br><input type="radio" name="demanda3" value="4"></label>
+              <label>Sempre<br><input type="radio" name="demanda3" value="5"></label>
+            </div>
+          
+            <p>Tenho dificuldade para equilibrar trabalho e vida pessoal.</p>
+            <div class="escala-opcoes">
+              <label>Nunca<br><input type="radio" name="demanda4" value="1" required></label>
+              <label><br><input type="radio" name="demanda4" value="2"></label>
+              <label><br><input type="radio" name="demanda4" value="3"></label>
+              <label><br><input type="radio" name="demanda4" value="4"></label>
+              <label>Sempre<br><input type="radio" name="demanda4" value="5"></label>
+            </div>
+          </div>
+
+                 <!--Pergunta 2 -->
+<div class="grupo2">
+    <strong>2. Autonomia e Controle</strong>
+    
+      <p>Tenho autonomia para tomar decisões sobre meu trabalho.</p>
+      <div class="escala-opcoes">
+        <label>Nunca<br><input type="radio" name="autonomia1" value="1" required></label>
+        <label><br><input type="radio" name="autonomia1" value="2"></label>
+        <label><br><input type="radio" name="autonomia1" value="3"></label>
+        <label><br><input type="radio" name="autonomia1" value="4"></label>
+        <label>Sempre<br><input type="radio" name="autonomia1" value="5"></label>
+      </div>
+    
+    
+      <p>Tenho liberdade para organizar minhas tarefas.</p>
+      <div class="escala-opcoes">
+        <label>Nunca<br><input type="radio" name="autonomia2" value="1" required></label>
+        <label><br><input type="radio" name="autonomia2" value="2"></label>
+        <label><br><input type="radio" name="autonomia2" value="3"></label>
+        <label><br><input type="radio" name="autonomia2" value="4"></label>
+        <label>Sempre<br><input type="radio" name="autonomia2" value="5"></label>
+      </div>
+    
+    
+        <p>Sou envolvido(a) nas decisões que afetam meu setor.</p>
+        <div class="escala-opcoes">
+          <label>Nunca<br><input type="radio" name="autonomia3" value="1" required></label>
+          <label><br><input type="radio" name="autonomia3" value="2"></label>
+          <label><br><input type="radio" name="autonomia3" value="3"></label>
+          <label><br><input type="radio" name="autonomia3" value="4"></label>
+          <label>Sempre<br><input type="radio" name="autonomia3" value="5"></label>
+        </div>
+      </div>
+
+       <!--Pergunta 3 -->
+<div class="grupo3">
+    <strong>3. Reconhecimento e Recompensas</strong>
+    
+      <p>Me sinto valorizado(a) pelo trabalho que realizo.</p>
+      <div class="escala-opcoes">
+        <label>Nunca<br><input type="radio" name="reconhecimento1" value="1" required></label>
+        <label><br><input type="radio" name="reconhecimento1" value="2"></label>
+        <label><br><input type="radio" name="reconhecimento1" value="3"></label>
+        <label><br><input type="radio" name="reconhecimento1" value="4"></label>
+        <label>Sempre<br><input type="radio" name="reconhecimento1" value="5"></label>
+      </div>
+    
+    
+      <p>Recebo feedbacks construtivos sobre meu desempenho.</p>
+      <div class="escala-opcoes">
+        <label>Nunca<br><input type="radio" name="reconhecimento2" value="1" required></label>
+        <label><br><input type="radio" name="reconhecimento2" value="2"></label>
+        <label><br><input type="radio" name="reconhecimento2" value="3"></label>
+        <label><br><input type="radio" name="reconhecimento2" value="4"></label>
+        <label>Sempre<br><input type="radio" name="reconhecimento2" value="5"></label>
+      </div>
+    
+    
+        <p>Tenho oportunidades de crescimento e desenvolvimento.</p>
+        <div class="escala-opcoes">
+          <label>Nunca<br><input type="radio" name="reconhecimento3" value="1" required></label>
+          <label><br><input type="radio" name="reconhecimento3" value="2"></label>
+          <label><br><input type="radio" name="reconhecimento3" value="3"></label>
+          <label><br><input type="radio" name="reconhecimento3" value="4"></label>
+          <label>Sempre<br><input type="radio" name="reconhecimento3" value="5"></label>
+        </div>
+      </div> 
+   
+  
+      <!-- Comentário -->
+      <div class="comentario">
+        <strong>Comentário livre (opcional):</strong><br>
+        <textarea name="comentario1" rows="3" placeholder="Digite aqui seu comentário..."></textarea>
+      </div>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+<script>
+  const form = document.getElementById("formulario");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+  
+    const formData = new FormData(form);
+    // Cria um objeto para armazenar as respostas do formulário
+  const respostas = {};
+  
+  // Gera a data e hora atual no formato "dd/mm/aaaa hh:mm"
+  const agora = new Date();
+  const dia = String(agora.getDate()).padStart(2, '0');
+  const mes = String(agora.getMonth() + 1).padStart(2, '0'); // Janeiro = 0
+  const ano = agora.getFullYear();
+  const hora = String(agora.getHours()).padStart(2, '0');
+  const minutos = String(agora.getMinutes()).padStart(2, '0');
+  
+  // Adiciona a data e hora no formato desejado
+  respostas.dataEnvio = `${dia}/${mes}/${ano} ${hora}:${minutos}`;
+  
+  // Percorre todos os campos preenchidos do formulário e adiciona ao objeto 'respostas'
+  for (const [campo, valor] of formData.entries()) {
+  respostas[campo] = valor;
+  }
+  
+  
+    // Salva no localStorage
+    const salvos = JSON.parse(localStorage.getItem("respostasInventario")) || [];
+    salvos.push(respostas);
+    localStorage.setItem("respostasInventario", JSON.stringify(salvos));
+  
+    alert("Respostas salvas com sucesso!");
+    form.reset();
+    form.reset();
+  });
+</script>
+</body>
+</html>

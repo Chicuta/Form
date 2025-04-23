@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Respostas do Inventário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .estatisticas {
+      max-width: 800px;
+      margin: 0 auto 30px;
+      background-color: #ffffff;
+      padding: 15px 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .estatisticas h3 {
+      margin-bottom: 10px;
+      color: #2980b9;
+    }
+
+    .estatisticas p {
+      margin: 5px 0;
+      color: #2c3e50;
+    }
+
+    .resposta {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .resposta strong {
+      color: #34495e;
+    }
+
+    .logout {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .logout a {
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .logout a:hover {
+      background-color: #2980b9;
+      transform: scale(1.05);
+    }
+
+    .btn-voltar {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border-radius: 8px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-voltar:hover {
+      background-color: #2980b9;
+      transform: scale(1.02);
+    }
+
+    .nenhuma {
+      text-align: center;
+      color: #7f8c8d;
+      margin-top: 40px;
+    }
+
+    .btn-limpar {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.btn-limpar:hover {
+  background-color: #c0392b;
+}
+
+  </style>
+</head>
+<body>
+  <button class="btn-voltar" onclick="window.location.href='index.html'">← Voltar ao Formulário</button>
+
+  <div class="logout">
+    <a href="login.html">Sair</a>
+  </div>
+
+  <h2>Respostas Recebidas</h2>
+
+  <div id="estatisticas" class="estatisticas" style="display: none;">
+    <h3>Resumo das Respostas</h3>
+    <p><strong>Total de Respostas:</strong> <span id="totalRespostas"></span></p>
+    <div id="resumoSetores"></div>
+  </div>
+
+  <div id="listaRespostas"></div>
+
+  <!-- respostas.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Respostas</title>
+</head>
+<body>
+  <h1>Respostas Recebidas</h1>
+  <div id="respostas"></div>
+
+
+</body>
+</html>
+
+  <script>
+
+    const respostas = JSON.parse(localStorage.getItem("respostasInventario")) || [];
+    const lista = document.getElementById("listaRespostas");
+    const totalEl = document.getElementById("totalRespostas");
+    const setoresEl = document.getElementById("resumoSetores");
+    const estatisticasBox = document.getElementById("estatisticas");
+
+    if (respostas.length === 0) {
+      lista.innerHTML = "<p class='nenhuma'>Nenhuma resposta encontrada.</p>";
+    } else {
+      // Mostrar estatísticas
+      estatisticasBox.style.display = 'block';
+      totalEl.textContent = respostas.length;
+
+      
+      const setores = {};
+
+  respostas.forEach(resp => {
+    const setor = resp.setor || 'Não informado';
+    if (!setores[setor]) setores[setor] = { total: 0, respostas: [] };
+
+    setores[setor].total += 1;
+    setores[setor].respostas.push(resp);
+  });
+  
+
+  // Exibir estatísticas por setor
+  for (const [setor, dados] of Object.entries(setores)) {
+    const votosPorResposta = {};
+
+    // Vamos contar todas as respostas (exceto dataEnvio, setor, nome, telefone, email e comentario1)
+    dados.respostas.forEach(resp => {
+      for (const [campo, valor] of Object.entries(resp)) {
+        if (!["dataEnvio", "setor", "nome", "telefone", "email", "comentario1"].includes(campo)) {
+            const chave = `${campo}: ${valor}`;
+          votosPorResposta[chave] = (votosPorResposta[chave] || 0) + 1;
+        }
+      }
+    });
+
+    // Encontrar a mais votada
+    let maisVotada = '';
+    let maiorContagem = 0;
+    for (const [texto, count] of Object.entries(votosPorResposta)) {
+      if (count > maiorContagem) {
+        maisVotada = texto;
+        maiorContagem = count;
+      }
+    }
+
+    const p = document.createElement("p");
+    p.innerHTML = `
+      <strong>${setor}</strong>: ${dados.total} resposta(s)<br>
+      <em>Resposta mais votada:</em> ${maisVotada} (${maiorContagem} voto(s))
+    `;
+    setoresEl.appendChild(p);
+  }
+
+  // Exibir todas as respostas individuais
+  respostas.forEach((resposta, index) => {
+    const div = document.createElement("div");
+    div.classList.add("resposta");
+
+    let html = `<p><strong>Resposta ${index + 1} - Data:</strong> ${resposta.dataEnvio}</p>`;
+    for (const [campo, valor] of Object.entries(resposta)) {
+      if (campo !== "dataEnvio") {
+        html += `<p><strong>${campo}:</strong> ${valor}</p>`;
+      }
+    }
+
+    div.innerHTML = html;
+    lista.appendChild(div);
+  });
+}
+  </script>
+
+<button onclick="limparRespostas()" class="btn-limpar">🗑️ Limpar todas as respostas</button>
+
+ <script>
+  function limparRespostas() {
+    if (confirm("Tem certeza que deseja apagar todas as respostas?")) {
+      localStorage.removeItem("respostasInventario");
+      location.reload(); // Recarrega a página para atualizar a interface
+    }
+  }
+    
+</script>
+</html>
